@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+// import BooksManager from "./components/booksManager/booksManager";
+
+// Clase APP = Componente React "APP"
+export default class App extends Component {
+  state = { loading: true, drizzleState: this.props.drizzle };
+
+  componentDidMount() {
+    const { drizzle } = this.props;
+
+    // subscribe to changes in the store, what is the store ??
+    this.unsubscribe = drizzle.store.subscribe(() => {
+      // every time the store updates, grab the state from drizzle
+      const drizzleState = drizzle.store.getState();
+
+      // check to see if it's ready, if so, update local component state
+      if (drizzleState.drizzleStatus.initialized) {
+        this.setState({ loading: false, drizzleState });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  render() {
+    /*if (this.state.loading) {
+      return "Loading Drizzle...";
+    }*/
+
+    return (
+      <div className="App">
+
+        Javo es un genio !!
+{/*         <BooksManager
+          drizzle={this.props.drizzle}
+          drizzleState={this.state.drizzleState}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        </BooksManager>
+ */}      </div>
+    );
+  }
 }
-
-export default App;
