@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 
-// import BooksManager from "./components/booksManager/booksManager";
+import BooksManager from "./components/booksManager/booksManager";
 
 // Clase APP = Componente React "APP"
 export default class App extends Component {
@@ -34,13 +34,12 @@ export default class App extends Component {
     return (
       <div className="App">
 
-        Javo es un genio !!
-{/*         <BooksManager
+        <BooksManager
           drizzle={this.props.drizzle}
           drizzleState={this.state.drizzleState}
         >
         </BooksManager>
- */}      </div>
+      </div>
     );
   }
 }

@@ -1,0 +1,98 @@
+[
+  {
+    "id": 0,
+    "title": "Frieda",
+    "author": "images/scottish-terrier.jpeg",
+    "price": 3
+  },
+  {
+    "id": 1,
+    "title": "Gina",
+    "author": "images/scottish-terrier.jpeg",
+    "price": 3
+  },
+  {
+    "id": 2,
+    "title": "Collins",
+    "author": "images/french-bulldog.jpeg",
+    "price": 2
+  },
+  {
+    "id": 3,
+    "title": "Melissa",
+    "author": "images/boxer.jpeg",
+    "price": 2
+  },
+  {
+    "id": 4,
+    "title": "Jeanine",
+    "author": "images/french-bulldog.jpeg",
+    "price": 2
+  },
+  {
+    "id": 5,
+    "title": "Elvia",
+    "author": "images/french-bulldog.jpeg",
+    "price": 3
+  },
+  {
+    "id": 6,
+    "title": "Latisha",
+    "author": "images/golden-retriever.jpeg",
+    "price": 3
+  },
+  {
+    "id": 7,
+    "title": "Coleman",
+    "author": "images/golden-retriever.jpeg",
+    "price": 3
+  },
+  {
+    "id": 8,
+    "title": "Nichole",
+    "author": "images/french-bulldog.jpeg",
+    "price": 2
+  },
+  {
+    "id": 9,
+    "title": "Fran",
+    "author": "images/boxer.jpeg",
+    "price": 3
+  },
+  {
+    "id": 10,
+    "title": "Leonor",
+    "author": "images/boxer.jpeg",
+    "price": 2
+  },
+  {
+    "id": 11,
+    "title": "Dean",
+    "author": "images/scottish-terrier.jpeg",
+    "price": 3
+  },
+  {
+    "id": 12,
+    "title": "Stevenson",
+    "author": "images/french-bulldog.jpeg",
+    "price": 3
+  },
+  {
+    "id": 13,
+    "title": "Kristina",
+    "author": "images/golden-retriever.jpeg",
+    "price": 4
+  },
+  {
+    "id": 14,
+    "title": "Ethel",
+    "author": "images/golden-retriever.jpeg",
+    "price": 2
+  },
+  {
+    "id": 15,
+    "title": "Terry",
+    "author": "images/golden-retriever.jpeg",
+    "price": 2
+  }
+]

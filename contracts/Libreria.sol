@@ -12,6 +12,8 @@ uint256 public constant  maxAmmountOfBooks = 20;
 
 address payable public _owner;
 
+uint256[maxAmmountOfBooks] public bookIndex;
+
 struct Book {
         uint256 bookId;
         address payable owner;
@@ -79,8 +81,12 @@ function lendBook(uint _id) public payable {
 function returnBook(uint _id) public payable {
     books[_id].temporalOwner = books[_id].owner;
 
-
     }
+
+  // Retrieving the indexes of the books
+  function getBooksIndexes() public view returns (uint256[maxAmmountOfBooks] memory) {
+    return bookIndex;
+  }
     
     
 }
