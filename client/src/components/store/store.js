@@ -26,7 +26,7 @@ export default class Store extends React.Component {
   render() {
     const booksRows = this.props.books.map(book => {
       return (
-        <tr>
+        <tr key={book.bookId}>
           <td>{book.bookId}</td>
           <td>{book.purchasePrice}</td>
           <td>{book.lendingPrice}</td>

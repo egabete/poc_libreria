@@ -2,7 +2,7 @@ import React from "react";
 
 export default class ListBooks extends React.Component {
   handleReturn = bookId => {
-    const { drizzle, drizzleState, books } = this.props;
+    const { drizzle, drizzleState } = this.props;
     const contract = drizzle.contracts.Libreria;
 
     // let drizzle know we want to call the `set` method with `value`
@@ -16,7 +16,7 @@ export default class ListBooks extends React.Component {
 
     const booksRows = this.props.books.map(book => {
       return (
-        <tr>
+        <tr key={book.bookId}>
           <td>{book.bookId}</td>
           <td>{book.owner === myAddress ? "Es mio" : "Prestado"}</td>
           <td>

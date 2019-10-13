@@ -8,7 +8,7 @@ contract Herencia {
 
 contract Libreria {
 
-    uint256 public constant  maxAmmountOfBooks = 20;
+    uint256 private constant  maxAmmountOfBooks = 20;
 
     address payable public store;
 
@@ -23,14 +23,18 @@ contract Libreria {
     // mapping
     mapping (uint256 => Book) public books;
 
+    uint256[] bookIndex;
+
     constructor() public {
         store = msg.sender;
         for (uint i=0;i < maxAmmountOfBooks;i++){
             books[i].bookId = i;
             books[i].owner = msg.sender;
             books[i].temporalOwner = msg.sender;
-            books[i].purchasePrice = 10;
-            books[i].lendingPrice = 5;
+            books[i].purchasePrice = 10000000;
+            books[i].lendingPrice = 5000000;
+
+            bookIndex.push(books[i].bookId);
         }
     }
 
@@ -86,12 +90,8 @@ contract Libreria {
 
     }
 
-    // Retrieving the indexes of the books
-    function getBooksIndexes() public view returns (uint256[maxAmmountOfBooks] memory) {
+    function getBookIndex() public view returns (uint256[] memory){
         return bookIndex;
     }
-
-
-
 
 }
