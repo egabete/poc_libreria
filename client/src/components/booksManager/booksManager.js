@@ -163,9 +163,18 @@ export default class BookManager extends React.Component {
 
     const { myBooks, storeBooks } = this.classifyBooks(books, bookIndex, myAddress, storeAddress);
 
+    // Una vez tengo las listas de mis libros y los libros del store, creo la logica de dibujado
+
+    let title;
+    if (iAmTheStore) {
+      title = <h2>Soy el store</h2>;
+    } else {
+      title = <h2>Mis Libros</h2>;
+    }
+
     let listBooksComponent = (
       <div style={{ flex: "50%" }}>
-        {iAmTheStore ? <h2>Soy el store</h2> : <h2>Mis Libros</h2>}
+        {title}
         <ListBooks
           books={myBooks}
           storeAddress={storeAddress}
@@ -176,7 +185,7 @@ export default class BookManager extends React.Component {
     );
 
     let storeComponent;
-    if (myAddress !== storeAddress) {
+    if (!iAmTheStore) {
       storeComponent = (
         <div style={{ borderLeft: "solid 1px gray", flex: "50%" }}>
           <Store
