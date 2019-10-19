@@ -4,7 +4,7 @@ import ListBooks from "../listBooks/listBooks";
 import Store from "../store/store";
 
  */
-//import booksJson from "../../books.json";
+import booksJson from "../../books.json";
 import ListBooks from "../listBooks/listBooks";
 import Store from "../store/store";
 
@@ -93,6 +93,8 @@ export default class BookManager extends React.Component {
       const book = Libreria.books[this.state.booksDataKey[bookId]];
       // Guardo el libro en la key correspoindiente al bookID
       books[bookId] = book.value;
+      books[bookId].title = booksJson[bookId].title;
+      books[bookId].cover = booksJson[bookId].cover;
     });
 
     return books;
@@ -187,7 +189,7 @@ export default class BookManager extends React.Component {
     let storeComponent;
     if (!iAmTheStore) {
       storeComponent = (
-        <div style={{ borderLeft: "solid 1px gray", flex: "50%" }}>
+        <div style={{ borderLeft: "solid 1px gray", paddingLeft: "20px", flex: "50%" }}>
           <Store
             books={storeBooks}
             storeAddress={storeAddress}
