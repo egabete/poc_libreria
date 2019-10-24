@@ -1,98 +1,83 @@
-[
-  {
-    "id": 0,
-    "title": "Frieda",
-    "author": "images/scottish-terrier.jpeg",
-    "price": 3
+{
+  "0": {
+    "title": "El fiscal acorralado",
+    "cover": "http://i.imgur.com/RQ61Sx9.jpg"
   },
-  {
-    "id": 1,
-    "title": "Gina",
-    "author": "images/scottish-terrier.jpeg",
-    "price": 3
+  "1": {
+    "title": "El efecto Transilvania",
+    "cover": "http://i.imgur.com/OgS4gAu.jpg"
   },
-  {
-    "id": 2,
-    "title": "Collins",
-    "author": "images/french-bulldog.jpeg",
-    "price": 2
+  "2": {
+    "title": "El ritual de las doncellas",
+    "cover": "http://imgur.com/8ruqC9E.jpg"
   },
-  {
-    "id": 3,
-    "title": "Melissa",
-    "author": "images/boxer.jpeg",
-    "price": 2
+  "3": {
+    "title": "La tierra desnuda",
+    "cover": "https://i.postimg.cc/1R0kPr5D/La-tierra-desnuda-400x600-con-logo.jpg"
   },
-  {
-    "id": 4,
-    "title": "Jeanine",
-    "author": "images/french-bulldog.jpeg",
-    "price": 2
+  "4": {
+    "title": "El Águila y la Lambda",
+    "cover": "http://imgur.com/VJRaOCN.jpg"
   },
-  {
-    "id": 5,
-    "title": "Elvia",
-    "author": "images/french-bulldog.jpeg",
-    "price": 3
+  "5": {
+    "title": "El escarabajo de oro y otros cuentos (Ilustrado)",
+    "cover": "http://i.imgur.com/OUTote3.jpg"
   },
-  {
-    "id": 6,
-    "title": "Latisha",
-    "author": "images/golden-retriever.jpeg",
-    "price": 3
+  "6": {
+    "title": "Para ti, Lucía",
+    "cover": "https://i.postimg.cc/1XmwhFRW/51806.jpg"
   },
-  {
-    "id": 7,
-    "title": "Coleman",
-    "author": "images/golden-retriever.jpeg",
-    "price": 3
+  "7": {
+    "title": "La Fundación",
+    "cover": "http://i.imgur.com/00V0CW0.jpg"
   },
-  {
-    "id": 8,
-    "title": "Nichole",
-    "author": "images/french-bulldog.jpeg",
-    "price": 2
+  "8": {
+    "title": "Informes & Discursos",
+    "cover": "http://i.imgur.com/PmEMHaO.jpg"
   },
-  {
-    "id": 9,
-    "title": "Fran",
-    "author": "images/boxer.jpeg",
-    "price": 3
+  "9": {
+    "title": "El día perfecto",
+    "cover": "https://i.postimg.cc/R0PxvQGy/51803.jpg"
   },
-  {
-    "id": 10,
-    "title": "Leonor",
-    "author": "images/boxer.jpeg",
-    "price": 2
+  "10": {
+    "title": "Tumithak de Loor",
+    "cover": "http://i.imgur.com/j46cjWT.jpg"
   },
-  {
-    "id": 11,
-    "title": "Dean",
-    "author": "images/scottish-terrier.jpeg",
-    "price": 3
+  "11": {
+    "title": "Los evangelios apócrifos",
+    "cover": "https://i.vgy.me/Z4AW1o.jpg"
   },
-  {
-    "id": 12,
-    "title": "Stevenson",
-    "author": "images/french-bulldog.jpeg",
-    "price": 3
+  "12": {
+    "title": "Feliz Navidad",
+    "cover": "https://i.postimg.cc/1ztZxQWQ/51799.jpg"
   },
-  {
-    "id": 13,
-    "title": "Kristina",
-    "author": "images/golden-retriever.jpeg",
-    "price": 4
+  "13": {
+    "title": "Largo domingo de noviazgo",
+    "cover": "http://imgur.com/GOHuyuS.jpg"
   },
-  {
-    "id": 14,
-    "title": "Ethel",
-    "author": "images/golden-retriever.jpeg",
-    "price": 2
+  "14": {
+    "title": "La anciana señora Webster",
+    "cover": "https://i.postimg.cc/8cZbFyqJ/coverweb.jpg"
   },
-  {
-    "id": 15,
-    "title": "Terry",
-    "author": "images/golden-retriever.jpeg",
-    "price": 2
+  "15": {
+    "title": "The White Tiger",
+    "cover": "http://i.imgur.com/GIn9qLG.jpg"
+  },
+  "16": {
+    "title": "4 Horizontal: Roma al revés",
+    "cover": "https://i.postimg.cc/htKxs2SH/51790.jpg"
+  },
+  "17": {
+    "title": "El abismo de Maracot",
+    "cover": "http://imgur.com/pB3DNtB.jpg"
+  },
+
+  "18": {
+    "title": "El código de las mentes extraordinarias",
+    "cover": "http://i.imgur.com/0BljkkG.jpg"
+  },
+  "19": {
+    "title": "Marruecos ese gran desconocido",
+    "cover": "http://imgur.com/aSQjy2d.jpg"
   }
-]
+}
