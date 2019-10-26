@@ -192,12 +192,13 @@ export default class BookManager extends React.Component {
     if (iAmTheStore) {
       title = <h2>Soy el store</h2>;
     } else {
-      title = <h2>Mis Libros</h2>;
+      title = <h2>My Books</h2>;
     }
 
     let listBooksComponent = (
       <div style={{ flex: "50%" }}>
         {title}
+        <p>{this.props.drizzleState.accounts[0]}</p>
         <ListBooks
           books={myBooks}
           storeAddress={storeAddress}

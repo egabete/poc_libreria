@@ -13,17 +13,18 @@ export default class ListBooks extends React.Component {
 
   render() {
     const myAddress = this.props.drizzleState.accounts[0];
-
+        
     const booksRows = this.props.books.map(book => {
       return (
+        
         <tr key={book.bookId}>
           {/* <td>{book.bookId}</td> */}
-
+         
           <td style={{ textAlign: "center" }}>
             <img src={book.cover} style={{ width: "100px" }} />
             <p>{book.title}</p>
           </td>
-          <td>{book.owner === myAddress ? "Es mio" : "Prestado"}</td>
+          <td>{book.owner === myAddress ? "Owned" : "Borrowed"}</td>
           <td>
             {book.owner !== myAddress ? (
               <button
@@ -38,6 +39,8 @@ export default class ListBooks extends React.Component {
             )}
           </td>
         </tr>
+        
+
       );
     });
 
