@@ -27,6 +27,7 @@ export default class Store extends React.Component {
   };
 
   render() {
+    
     const booksRows = this.props.books.map(book => {
       return (
         <tr key={book.bookId}>
