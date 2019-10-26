@@ -27,7 +27,7 @@ contract Libreria {
 
     constructor() public {
         store = msg.sender;
-        for (uint i=0;i < maxAmmountOfBooks;i++){
+        for (uint i = 0;i < maxAmmountOfBooks; i ++){
             books[i].bookId = i;
             books[i].owner = msg.sender;
             books[i].temporalOwner = msg.sender;
@@ -46,13 +46,13 @@ contract Libreria {
     }
 
     modifier checkPurchasePrice (uint _id) {
-        require(msg.value >= books[_id].purchasePrice);
+        require(msg.value >= books[_id].purchasePrice, "Transfer is not enougth to purchase this book");
         _;
 
     }
 
     modifier checkLendingPrice (uint _id) {
-        require(msg.value >= books[_id].lendingPrice);
+        require(msg.value >= books[_id].lendingPrice, "Transfer is not enougth to borrow this book");
         _;
 
     }
