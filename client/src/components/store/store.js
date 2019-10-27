@@ -6,10 +6,13 @@ export default class Store extends React.Component {
     const contract = drizzle.contracts.Libreria;
 
     // let drizzle know we want to call the `set` method with `value`
-    contract.methods.buyBook.cacheSend(bookId, {
+
+    const options = {
       from: drizzleState.accounts[0],
       value: books[bookId].purchasePrice
-    });
+    };
+
+    contract.methods.buyBook.cacheSend(bookId, options);
   };
 
   handleRent = bookId => {
@@ -27,9 +30,14 @@ export default class Store extends React.Component {
     const booksRows = this.props.books.map(book => {
       return (
         <tr key={book.bookId}>
-          <td>{book.bookId}</td>
-          <td>{book.purchasePrice}</td>
-          <td>{book.lendingPrice}</td>
+          {/* <td>{book.bookId}</td> */}
+
+          <td style={{ textAlign: "center" }}>
+            <img src={book.cover} style={{ width: "100px" }} />
+            <p>{book.title}</p>
+          </td>
+          <td>$ {book.purchasePrice}</td>
+          <td>$ {book.lendingPrice}</td>
           <td>
             <button
               onClick={() => {
@@ -58,9 +66,10 @@ export default class Store extends React.Component {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Precio compra</th>
-              <th>Precio alquiler</th>
+              {/* <th>ID</th> */}
+              <th>Portada</th>
+              <th>Compra</th>
+              <th>Alquiler</th>
               <th>Comprar</th>
               <th>Alquilar</th>
             </tr>

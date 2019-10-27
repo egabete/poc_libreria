@@ -17,7 +17,12 @@ export default class ListBooks extends React.Component {
     const booksRows = this.props.books.map(book => {
       return (
         <tr key={book.bookId}>
-          <td>{book.bookId}</td>
+          {/* <td>{book.bookId}</td> */}
+
+          <td style={{ textAlign: "center" }}>
+            <img src={book.cover} style={{ width: "100px" }} />
+            <p>{book.title}</p>
+          </td>
           <td>{book.owner === myAddress ? "Es mio" : "Prestado"}</td>
           <td>
             {book.owner !== myAddress ? (
@@ -41,7 +46,8 @@ export default class ListBooks extends React.Component {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              {/* <th>ID</th> */}
+              <th>Portada</th>
               <th>Estado</th>
               <th>Devolver</th>
             </tr>
