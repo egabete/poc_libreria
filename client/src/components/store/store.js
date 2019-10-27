@@ -37,8 +37,8 @@ export default class Store extends React.Component {
             <img src={book.cover} style={{ width: "100px" }} />
             <p>{book.title}</p>
           </td>
-          <td>$ {book.purchasePrice}</td>
-          <td>$ {book.lendingPrice}</td>
+          <td>WEI {book.purchasePrice}</td>
+          <td>WEI {book.lendingPrice}</td>
           <td>
             <button
               onClick={() => {
