@@ -7,6 +7,25 @@ import BooksManager from "./components/booksManager/booksManager";
 export default class App extends Component {
   state = { loading: true, drizzleState: this.props.drizzle };
 
+  setAccountChangeListener() {
+    // Esta funcinon crea un listener para detectar el cambio de cuenta en metamask
+    const accountChangeListener = () => {
+      window.ethereum.on('accountsChanged', function (accounts) {
+        window.location.reload();
+      });
+    }
+
+    // Si tengo disponible ethereum como variable global, agrego el listener
+    if (window.ethereum){
+      accountChangeListener();
+    } else {
+      // Si no esta disponible window.etherum, reintento mas 5 segundos mas tarde
+      setTimeout(() => {
+        this.setAccountChangeListener()
+      }, 5000)
+    }
+  }
+
   componentDidMount() {
     const { drizzle } = this.props;
 
@@ -20,6 +39,8 @@ export default class App extends Component {
         this.setState({ loading: false, drizzleState });
       }
     });
+
+    this.setAccountChangeListener();
   }
 
   componentWillUnmount() {
@@ -27,6 +48,7 @@ export default class App extends Component {
   }
 
   render() {
+
     if (this.state.loading) {
       return "Loading Drizzle...";
     }
