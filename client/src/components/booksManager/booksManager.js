@@ -4,11 +4,16 @@ import ListBooks from "../listBooks/listBooks";
 import Store from "../store/store";
 
  */
-import booksJson from "../../books.json"
+//import booksJson from "../../books.json";
+import ListBooks from "../listBooks/listBooks";
+import Store from "../store/store";
+
+const TOTAL_BOOKS = 20;
 
 export default class BookManager extends React.Component {
   state = {
-    dataKey: null
+    storeDataKey: null,
+    booksDataKey: {}
   };
 
   // Esto es lo mismo que estaba antes en listBooks. Se encarga de pedir los datos del contrato y cuando estan
@@ -17,72 +22,116 @@ export default class BookManager extends React.Component {
     const { drizzle } = this.props;
 
     const libreria = drizzle.contracts.Libreria;
-    debugger
-    const dataKey = libreria.methods["getBooksIndexes"].cacheCall();
 
-    console.log(dataKey);
+    const storeDataKey = libreria.methods.store.cacheCall();
 
-    this.setState({ dataKey });
-  }
+    let booksDataKey = {};
 
-  addBooksInfoToList = (books) => {
-    // ver metodo MAP. le paso una funciona que se ejecuta por cada uno de los elementos de "books"
-    return books.map(
-      (book, index) => {
-      const bookWithInfo = booksJson[index];
-      bookWithInfo.isMyBook = book !== "0x0000000000000000000000000000000000000000"
-      return bookWithInfo
-    })
+    // Llamo a la funcion tantas veces como libros hay (no encontre mejor forma aun)
+    for (let i = 0; i < TOTAL_BOOKS; i++) {
+      booksDataKey[i] = libreria.methods.books.cacheCall(i);
+    }
+
+    this.setState({ storeDataKey, booksDataKey });
   }
 
   render() {
     // Codigo estandar para cargar el contrato
     const { Libreria } = this.props.drizzleState.contracts;
-    console.log("Libreria",this.props.drizzleState.contracts)
-    debugger
 
-    // const { Adoption } = this.props.drizzleState && this.props.drizzleState.contracts;
-   
-    // using the saved `dataKey`, get the variable we're interested in
-    // const adopters = Adoption.getAdopters[this.state.dataKey];
-    const booksIndex = Libreria.getBooksIndexes[this.state.dataKey];
+    const myAddress = this.props.drizzleState.accounts[0];
 
+    const storeAddressObject = Libreria.store[this.state.storeDataKey];
 
-    if (booksIndex && booksIndex.value) {
+    // Objeto con la info de los libros, similar al del contrato
+    let booksInfo = {};
 
-    debugger
-      // Juntamos la info del json (con la data de los libros), con el estado de la blockchain
+    // Me aseguro que ya haya obtenido la informacion del total de libros que hay (como hice 20 llamadas, necesito esperar tener la info de todas las llamadas)
+    if (
+      storeAddressObject &&
+      storeAddressObject.value &&
+      Libreria.books &&
+      Object.keys(Libreria.books).length === TOTAL_BOOKS
+    ) {
+      const storeAddress = storeAddressObject.value;
+      for (let i = 0; i < TOTAL_BOOKS; i++) {
+        // Leo la info del libro
+        const book = Libreria.books[this.state.booksDataKey[i]];
+        // Obtengo el id de ese libro
+        const bookId = book && book.value && book.value.bookId;
+        // Guardo el libro en la key correspoindiente al bookID
+        booksInfo[bookId] = book.value;
+      }
 
-/*    const createBooksInfoList = this.addBooksInfoToList(adopters.value);
+      // Creo una lista de mis libros y otras del store
+      let myBooks = [];
+      let storeBooks = [];
 
-      const myBooks = createBooksInfoList.filter(books => books.isMyBook);
+      const iAmTheStore = myAddress === storeAddress;
 
-      const storeBooks = createBooksInfoList.filter(books => !books.isMyBook);
- */
+      // Creo una lista, a partir de los IDs del objeto con la info de los libros (creado en linea 43)
+      const listOfBooksIDs = Object.keys(booksInfo);
+      for (var i = 0; i < listOfBooksIDs.length; i++) {
+        const currentBook = booksInfo[listOfBooksIDs[i]];
 
-      // IMPORTANTE: hasta ahora manejamos una sola lista, digamos los comprados o para comprar
-      // Hay que agregar logica para gestionar los prestados
-
-      /* return (
-        <Tabs
-          leftContent={
-            <ListBooks
-              drizzle={this.props.drizzle}
-              drizzleState={this.props.drizzleState}
-              books={myBooks}
-            />
+        // Por cada libro, si soy el owner o el temporalOwner, lo guardo en mi lista. Sino, asumo que es del store
+        if (iAmTheStore) {
+          // Si soy el store, y soy el dueño del libro y el dueño temporal, lo muestro
+          if (currentBook.owner === myAddress && currentBook.temporalOwner === myAddress) {
+            myBooks.push(currentBook);
           }
-          rightContent={
+        } else {
+          // Si no soy el store
+
+          // Si soy owner final o temporal, lo agrego a mi lista
+          if (currentBook.owner === myAddress || currentBook.temporalOwner === myAddress) {
+            myBooks.push(currentBook);
+          } else if (
+            // Si el owner temporal y final es el store, lo muestro en el store
+            // Tengo que chequear las 2 cosas, porque un tercero puede tener el libro a prestamo, y yo no tengo que verlo en el store
+            currentBook.owner === storeAddress &&
+            currentBook.temporalOwner === storeAddress
+          ) {
+            storeBooks.push(currentBook);
+          }
+        }
+      }
+
+      console.log({ myBooks });
+      console.log({ storeBooks });
+
+      let listBooksComponent = (
+        <div style={{ flex: "50%" }}>
+          {iAmTheStore ? <h2>Soy el store</h2> : <h2>Mis Libros</h2>}
+          <ListBooks
+            books={myBooks}
+            storeAddress={storeAddress}
+            drizzle={this.props.drizzle}
+            drizzleState={this.props.drizzleState}
+          />
+        </div>
+      );
+
+      let storeComponent;
+      if (myAddress !== storeAddress) {
+        storeComponent = (
+          <div style={{ borderLeft: "solid 1px gray", flex: "50%" }}>
             <Store
+              books={storeBooks}
+              storeAddress={storeAddress}
               drizzle={this.props.drizzle}
               drizzleState={this.props.drizzleState}
-              books={storeBooks}
             />
-          }
-          leftTitle="My books"
-          rightTitle="Store"
-        />
-      ) */
+          </div>
+        );
+      }
+
+      return (
+        <div style={{ display: "flex" }}>
+          {listBooksComponent}
+          {storeComponent}
+        </div>
+      );
     }
 
     return <div />;
