@@ -16,6 +16,25 @@ export default class BookManager extends React.Component {
     haveRequestedBooksFromContract: false
   };
 
+  setAccountChangeListener() {
+    // Esta funcinon crea un listener para detectar el cambio de cuenta en metamask
+    const accountChangeListener = () => {
+      window.ethereum.on('accountsChanged', function (accounts) {
+        window.location.reload();
+      });
+    }
+
+    // Si tengo disponible ethereum como variable global, agrego el listener
+    if (window.ethereum){
+      accountChangeListener();
+    } else {
+      // Si no esta disponible window.etherum, reintento mas 5 segundos mas tarde
+      setTimeout(() => {
+        this.setAccountChangeListener()
+      }, 5000)
+    }
+  }
+
   // Esto es lo mismo que estaba antes en listBooks. Se encarga de pedir los datos del contrato y cuando estan
   // los guarda en dataKey
   componentDidMount() {
@@ -24,6 +43,8 @@ export default class BookManager extends React.Component {
     const storeDataKey = libreriaContract.methods.store.cacheCall();
 
     const getBookIndexDataKey = libreriaContract.methods.getBookIndex.cacheCall();
+
+    this.setAccountChangeListener();
 
     this.setState({ storeDataKey, getBookIndexDataKey });
   }
