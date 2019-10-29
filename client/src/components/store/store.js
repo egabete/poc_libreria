@@ -32,6 +32,7 @@ export default class Store extends React.Component {
   componentDidMount() {
   
   const verVentasDataKey = this.props.drizzle.contracts.Libreria.methods.verVentas.cacheCall();
+  
   this.setState({ verVentasDataKey});
 
   }
