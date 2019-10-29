@@ -1,13 +1,8 @@
 pragma solidity >=0.4.21 <0.6.0;
 
-<<<<<<< HEAD
-=======
-contract LibreriaBase {
->>>>>>> f9e1b7f84a740e730a21c4a75a40fb06dba757e7
 
 uint256 private constant  maxAmmountOfBooks = 20;
 
-<<<<<<< HEAD
 
 contract LibreriaData {
 
@@ -182,41 +177,11 @@ contract LibreriaData {
 
 
         // fin inicialización datos.
-=======
-    address payable public store;
-
-    struct Book {
-        uint256 bookId;
-        address payable owner;
-        address temporalOwner;
-        uint256 purchasePrice;
-        uint256 lendingPrice;
-    }
-
-    // mapping
-    mapping (uint256 => Book) public books;
-
-    uint256[] public bookIndex;
-
-
-    constructor() internal {
-        store = msg.sender;
-        for (uint i = 0;i < maxAmmountOfBooks; i ++){
-            books[i].bookId = i;
-            books[i].owner = msg.sender;
-            books[i].temporalOwner = msg.sender;
-            books[i].purchasePrice = 10000000000000;
-            books[i].lendingPrice = 2000000000000;
-
-            bookIndex.push(books[i].bookId);
-        }
->>>>>>> f9e1b7f84a740e730a21c4a75a40fb06dba757e7
     }
 
 }
 
 
-<<<<<<< HEAD
 import {bookCounters} from "../libraries/bookCounters.sol";
 
 contract Libreria is LibreriaData {
@@ -228,13 +193,6 @@ contract Libreria is LibreriaData {
 
 // ============================= START MODIFIERS ============================= //
 
-=======
-contract Libreria is LibreriaBase {
-
-
-
-    // modifiers
->>>>>>> f9e1b7f84a740e730a21c4a75a40fb06dba757e7
     modifier checkId (uint256 _id) {
         require(books[_id].bookId != _id, "Book already exists");
         _;
@@ -252,12 +210,10 @@ contract Libreria is LibreriaBase {
         _;
 
     }
-<<<<<<< HEAD
 
     modifier stopInEmergency {
         if (!stopped)
         _;
-=======
 
     // Funcion para agregar un libro dentro del array de libros.
     function addBook(uint256 _id, uint256 pPrice, uint256 lPrice) public checkId(_id) {
@@ -266,7 +222,6 @@ contract Libreria is LibreriaBase {
         books[_id].owner = store;
         books[_id].purchasePrice = pPrice;
         books[_id].lendingPrice = lPrice;
->>>>>>> f9e1b7f84a740e730a21c4a75a40fb06dba757e7
     }
 
     modifier onlyInEmergency {
@@ -274,18 +229,9 @@ contract Libreria is LibreriaBase {
         _;
     }
 
-<<<<<<< HEAD
 // =============================  END MODIFIERS  ============================= //
 
 // ============================= START FUNCTIONS ============================= //
-=======
-    // Funcion para la compra de un libro. Se requiere el id del libro y el precio de compra.
-    function buyBook(uint _id) public payable checkPurchasePrice(_id) {
-
-        books[_id].owner.transfer(books[_id].purchasePrice);
-        books[_id].owner = msg.sender;
-
->>>>>>> f9e1b7f84a740e730a21c4a75a40fb06dba757e7
 
     // Funcion para activar o desactivar el contrato. Solo disponible para el owner del contrato.
     function switchOnOff() public {
@@ -294,7 +240,6 @@ contract Libreria is LibreriaBase {
         }
     }
 
-<<<<<<< HEAD
     // Funcion para la compra de un libro. Se requiere el id del libro y el precio de compra.
     function buyBook(uint256 _id) public payable checkPurchasePrice(_id) stopInEmergency {
 
@@ -323,27 +268,11 @@ contract Libreria is LibreriaBase {
 
         books[_id].owner.transfer(books[_id].lendingPrice);
         books[_id].temporalOwner = msg.sender;
-=======
-    // Funcion para efectuar el prestamo de un libro. Se requiere el id del libro y el precio de alquiler.
-    function lendBook(uint _id) public payable {
-
-        books[_id].owner.transfer(books[_id].lendingPrice);
-        books[_id].temporalOwner = msg.sender;
-
-    }
-
-    // Funcion para efectuar la devolución de un libro. Se requiere el id del libro.
-    function returnBook(uint _id) public payable {
-        books[_id].temporalOwner = books[_id].owner;
-
-    }
->>>>>>> f9e1b7f84a740e730a21c4a75a40fb06dba757e7
 
     function getBookIndex() public view returns (uint256[] memory){
         return bookIndex;
     }
 
-<<<<<<< HEAD
     // Funcion para efectuar la devolución de un libro. Se requiere el id del libro.
     function returnBook(uint256 _id) public payable stopInEmergency{
         books[_id].temporalOwner = books[_id].owner;
@@ -365,6 +294,4 @@ contract Libreria is LibreriaBase {
 
 // =============================  END FUNCTIONS  ============================= //
 
-=======
->>>>>>> f9e1b7f84a740e730a21c4a75a40fb06dba757e7
 }

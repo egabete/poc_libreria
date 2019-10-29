@@ -88,10 +88,7 @@ export default class Store extends React.Component {
     return (
       <div>
         <h2>Store</h2>
-<<<<<<< HEAD
         <p>Cantidad de Ventas: {this.getVentas()}</p>
-=======
->>>>>>> f9e1b7f84a740e730a21c4a75a40fb06dba757e7
         <table>
           <thead>
             <tr>
